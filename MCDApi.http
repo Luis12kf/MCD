@@ -1,0 +1,6 @@
+@MCDApi_HostAddress = http://localhost:5218
+
+GET {{MCDApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
