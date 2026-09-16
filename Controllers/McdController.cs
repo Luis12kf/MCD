@@ -24,6 +24,11 @@ public class McdController : ControllerBase
             b = residuo;
         }
 
-        return Ok("El Máximo Común Divisor es: " + a);
+       return Ok(new 
+        { 
+            dividendo = Dividendo,
+            divisor = Divisor,
+            resultado = a 
+        });
     }
 }
