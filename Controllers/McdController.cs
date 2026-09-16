@@ -1,30 +1,29 @@
 using Microsoft.AspNetCore.Mvc;
 
 namespace MCD.Controllers;
+
 [ApiController]
 [Route("api/[controller]")]
 public class McdController : ControllerBase
 {
-    [HttpGet("mcd/{numero1:int}/{numero2:int}")]
-    public IActionResult MCD(int numero1, int numero2)
+    [HttpGet("mcd/{Dividendo:int}/{Divisor:int}")]
+    public IActionResult MCD(int Dividendo, int Divisor)
     {
-        if (numero1 <= 0 || numero2 <= 0)
+        int a = Math.Abs(Dividendo);
+        int b = Math.Abs(Divisor);
+
+        if (a == 0 && b == 0)
         {
-            return BadRequest("Los números deben ser mayores a 0.");
+            return BadRequest("No se puede calcular el MCD de 0 y 0.");
         }
 
-        int mcd = CalcularMCD(numero1, numero2);
-        return Ok(mcd);
-    }
-
-    private int CalcularMCD(int a, int b)
-    {
         while (b != 0)
         {
-            int temp = b;
-            b = a % b;
-            a = temp;
+            int residuo = a % b;
+            a = b;
+            b = residuo;
         }
-        return a;
+
+        return Ok("El Máximo Común Divisor es: " + a);
     }
 }
